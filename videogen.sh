@@ -44,6 +44,10 @@ ts)
   ;;
 esac
 
+# https://gstreamer.freedesktop.org/documentation/additional/design/mediatype-video-raw.html?gi-language=c
+# 420, 10-bit, I420_10LE, I420_10BE
+# 422, 10-bit, I422_10LE, I422_10BE
+# 444, 10-bit, Y444_10LE, Y444_10BE
 case $FORMAT in
 420)
   _FORMAT=I420
@@ -60,7 +64,7 @@ case $FORMAT in
 esac
 
 echo [$(date)] | tee -a $LOG
-FILE=$1/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}.${MUX}
+FILE=$1/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}-${FORMAT}.${MUX}
 gst-launch-1.0 videotestsrc num-buffers=$((FPS * 10)) ! \
 	video/x-raw, framerate=$FPS/1, width=$WIDTH, height=$HEIGHT,format=$_FORMAT !\
 	videoconvert !\
