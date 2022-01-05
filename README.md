@@ -8,7 +8,6 @@ Install additional gstreamer plugins.
 sudo apt-get install gstreamer1.0-plugins-ugly
 sudo apt-get install gstreamer1.0-plugins-bad
 sudo apt install gstreamer1.0-libav 
-sudo apt install gstreamer1.0-libav
 </pre>
 
 ## Support Video Width and Height
