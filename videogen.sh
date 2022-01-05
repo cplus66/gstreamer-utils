@@ -13,7 +13,7 @@ HEIGHT=${HEIGHT:-480}
 ENCODE=${ENCODE:-x264}
 FPS=${FPS:-30}
 MUX=${MUX:-mp4}
-FORMAT=${FORMAT:-I420}
+FORMAT=${FORMAT:-420}
 LOG=videogen-$(date +%F).log
 
 usage()
@@ -83,6 +83,7 @@ INFO=$1/info/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}-${FORMAT}.${MUX}.info
 # TBD: x264enc bitrate=2048
 gst-launch-1.0 videotestsrc num-buffers=$((FPS * 10)) ! \
 	video/x-raw, framerate=$FPS/1, width=$WIDTH, height=$HEIGHT,format=$_FORMAT !\
+	timeoverlay !\
 	videoconvert !\
 	${_ENCODE}enc !\
 	${_MUX}mux !\
