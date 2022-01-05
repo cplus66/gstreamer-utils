@@ -1,3 +1,4 @@
 *.ts
 *.log
 output/*
+tmp

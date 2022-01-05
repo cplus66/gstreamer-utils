@@ -1,14 +1,15 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 WIDTH=${WIDTH:-640}
 HEIGHT=${HEIGHT:-480}
 ENCODE=${ENCODE:-x264}
 FPS=${FPS:-30}
 MUX=${MUX:-mp4}
+FORMAT=${FORMAT:-I420}
 LOG=videogen-$(date +%F).log
 
 usage()
 {
-  echo "ENCODE=<h264|hevc|vp8|vp9|av1> WIDTH=<w> HEIGHT=<h> FPS=<fps> MUX=<mp4|avi|ts|qt|webm> $0 <dir>"
+  echo "ENCODE=<h264|hevc|vp8|vp9|av1> WIDTH=<w> HEIGHT=<h> FPS=<fps> MUX=<mp4|avi|ts|qt|webm> FORMAT=<420|422|444> $0 <dir>"
 }
 
 if [ -z $1 ]; then
@@ -43,9 +44,26 @@ ts)
   ;;
 esac
 
+case $FORMAT in
+420)
+  _FORMAT=I420
+  ;;
+422)
+  _FORMAT=YUY2
+  ;;
+444)
+  _FORMAT=AYUV
+  ;;
+*)
+  _FORMAT=$FORMAT
+  ;;
+esac
+
 echo [$(date)] | tee -a $LOG
 FILE=$1/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}.${MUX}
-gst-launch-1.0 videotestsrc num-buffers=$((FPS * 10)) ! video/x-raw, framerate=$FPS/1, width=$WIDTH, height=$HEIGHT !\
+gst-launch-1.0 videotestsrc num-buffers=$((FPS * 10)) ! \
+	video/x-raw, framerate=$FPS/1, width=$WIDTH, height=$HEIGHT,format=$_FORMAT !\
+	videoconvert !\
        	${_ENCODE}enc ! ${_MUX}mux ! filesink location=$FILE | tee -a $LOG
 
 mediainfo $FILE > $FILE.info
