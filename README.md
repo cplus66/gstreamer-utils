@@ -19,13 +19,13 @@ sudo apt install gstreamer1.0-libav
 
 ## Support Encoders and Video Containers
 
-      | MP4 | QT  | AVI | TS 
----   | --- | --- | --- | ---      
- HEVC |     |     |     | x  
- AVC  | x   | x   | x   | x  
- AV1  | x   |     |     |    
- VP9  |     |     |     |    
- VP8  |     |     |     | x  
+Name | MP4 | QT  | AVI | TS 
+---  | --- | --- | --- | ---      
+HEVC |     |     |     | x  
+AVC  | x   | x   | x   | x  
+AV1  | x   |     |     |    
+VP9  |     |     |     |    
+VP8  |     |     |     | x  
 
 ## Reference
 http://wiki.oz9aec.net/index.php/Gstreamer_cheat_sheet
