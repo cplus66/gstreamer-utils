@@ -5,8 +5,9 @@ Create video test files by using gstreamer.
 Install additional gstreamer plugins.
 
 <pre>
-sudo apt-get install -y gstreamer1.0-plugins-ugly
-sudo apt-get install -y gstreamer1.0-plugins-bad
+sudo apt update
+sudo apt install -y gstreamer1.0-plugins-ugly
+sudo apt install -y gstreamer1.0-plugins-bad
 sudo apt install -y gstreamer1.0-libav
 sudo apt install -y mediainfo
 </pre>
