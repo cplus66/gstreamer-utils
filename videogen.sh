@@ -83,8 +83,8 @@ INFO=$1/info/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}-${FORMAT}.${MUX}.info
 # TBD: x264enc bitrate=2048
 gst-launch-1.0 videotestsrc num-buffers=$((FPS * 10)) ! \
 	video/x-raw, framerate=$FPS/1, width=$WIDTH, height=$HEIGHT,format=$_FORMAT !\
-	timeoverlay !\
 	videoconvert !\
+	timeoverlay !\
 	${_ENCODE}enc !\
 	${_MUX}mux !\
 	filesink location=$FILE \
