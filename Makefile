@@ -1,4 +1,4 @@
-all: mp4 mp4-avi mp4-color-space qt avi ts
+all: mp4 mp4-color-space qt avi ts
 
 mp4:
 	MUX=mp4 WIDTH=640  HEIGHT=480  ENCODE=h264 FPS=30 ./videogen.sh output
@@ -118,4 +118,4 @@ ts:
 	MUX=ts  WIDTH=3840 HEIGHT=2160 ENCODE=hevc FPS=60 ./videogen.sh output
 	
 clean:
-	rm -f output/*
+	rm -rf output/*
