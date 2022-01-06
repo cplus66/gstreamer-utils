@@ -23,8 +23,7 @@ mp4-avi:
 	MUX=mp4 WIDTH=3840 HEIGHT=2160 ENCODE=av1  FPS=30 ./videogen.sh output
 	MUX=mp4 WIDTH=3840 HEIGHT=2160 ENCODE=av1  FPS=60 ./videogen.sh output
 
-mp4-color-space:
-	mp4-420 mp4-422 mp4-444 mp4-420-10bit mp4-422-10bit mp4-444-10bit
+mp4-color-space: mp4-420 mp4-422 mp4-444 mp4-420-10bit mp4-422-10bit mp4-444-10bit
 
 mp4-420:
 	FORMAT=420 MUX=mp4 WIDTH=1920 HEIGHT=1080 ENCODE=h264 FPS=30 ./videogen.sh output
