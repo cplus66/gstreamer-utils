@@ -78,8 +78,9 @@ esac
 
 echo [$(date)] | tee -a $LOG
 
-FILE=$1/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}-yuv${FORMAT}-${DURATION}.${MUX}
-INFO=$1/info/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}-yuv${FORMAT}-${DURATION}.${MUX}.info
+FILE=$1/${WIDTH}-${HEIGHT}-${FPS}fps-${ENCODE}-yuv${FORMAT}-${DURATION}s.${MUX}
+BASE_NAME=$(basename $FILE)
+INFO=$1/info/${BASE_NAME}.info
 
 # TBD: x264enc bitrate=2048
 gst-launch-1.0 videotestsrc num-buffers=$((FPS * $DURATION)) ! \
