@@ -14,6 +14,7 @@ ENCODE=${ENCODE:-x264}
 FPS=${FPS:-30}
 MUX=${MUX:-mp4}
 FORMAT=${FORMAT:-420}
+DURATION=${DURATION:-10}
 LOG=videogen-$(date +%F).log
 
 usage()
@@ -77,11 +78,11 @@ esac
 
 echo [$(date)] | tee -a $LOG
 
-FILE=$1/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}-${FORMAT}.${MUX}
-INFO=$1/info/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}-${FORMAT}.${MUX}.info
+FILE=$1/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}-yuv${FORMAT}-${DURATION}.${MUX}
+INFO=$1/info/${WIDTH}-${HEIGHT}-${FPS}-${ENCODE}-yuv${FORMAT}-${DURATION}.${MUX}.info
 
 # TBD: x264enc bitrate=2048
-gst-launch-1.0 videotestsrc num-buffers=$((FPS * 10)) ! \
+gst-launch-1.0 videotestsrc num-buffers=$((FPS * $DURATION)) ! \
 	video/x-raw, framerate=$FPS/1, width=$WIDTH, height=$HEIGHT,format=$_FORMAT !\
 	videoconvert !\
 	timeoverlay !\
